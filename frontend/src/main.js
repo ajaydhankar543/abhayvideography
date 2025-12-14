@@ -121,8 +121,8 @@ function getHomePageHTML() {
           ${createQuickContactCard(
             '📱',
             'Call / WhatsApp',
-            '+91 98765 43210',
-            'tel:+919876543210',
+            '+91 7704866570',
+            'tel:+917704866570',
             'gradient-green'
           )}
           ${createQuickContactCard(
@@ -136,7 +136,7 @@ function getHomePageHTML() {
             '💬',
             'WhatsApp Chat',
             'Chat Now',
-            'https://wa.me/919876543210',
+            'https://wa.me/917704866570',
             'gradient-emerald'
           )}
         </div>
