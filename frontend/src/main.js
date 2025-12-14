@@ -63,6 +63,18 @@ function createStatCard(value, label, gradient) {
   `
 }
 
+function createQuickContactCard(icon, label, value, href, gradient) {
+  return `
+    <a href="${href}" class="quick-contact-card ${gradient}">
+      <div class="quick-contact-icon">${icon}</div>
+      <div class="quick-contact-info">
+        <p class="quick-contact-label">${label}</p>
+        <p class="quick-contact-value">${value}</p>
+      </div>
+    </a>
+  `
+}
+
 // ============================================
 // PAGE TEMPLATES
 // ============================================
@@ -100,6 +112,33 @@ function getHomePageHTML() {
               <span>📞</span>
             </span>
           </button>
+        </div>
+      </div>
+
+      <div class="quick-contact-section">
+        <h2 class="quick-contact-title">📞 Get In Touch</h2>
+        <div class="quick-contact-grid">
+          ${createQuickContactCard(
+            '📱',
+            'Call / WhatsApp',
+            '+91 98765 43210',
+            'tel:+919876543210',
+            'gradient-green'
+          )}
+          ${createQuickContactCard(
+            '📧',
+            'Email Us',
+            'abhay.videography@gmail.com',
+            'mailto:abhay.videography@gmail.com',
+            'gradient-blue'
+          )}
+          ${createQuickContactCard(
+            '💬',
+            'WhatsApp Chat',
+            'Chat Now',
+            'https://wa.me/919876543210',
+            'gradient-emerald'
+          )}
         </div>
       </div>
 
@@ -247,12 +286,12 @@ function getContactPageHTML() {
       </div>
 
       <div class="contact-cards-grid">
-        <a href="tel:+919876543210" class="contact-card">
+        <a href="tel:+917704866570" class="contact-card">
           <div class="contact-card-bg gradient-green"></div>
           <div class="contact-card-content">
             <div class="contact-icon">📱</div>
             <h3 class="contact-title">Call Me</h3>
-            <p class="contact-value green">+91 98765 43210</p>
+            <p class="contact-value green">+91 7704866570</p>
             <p class="contact-label">Available 24/7</p>
           </div>
         </a>
@@ -267,12 +306,12 @@ function getContactPageHTML() {
           </div>
         </a>
 
-        <a href="https://wa.me/919876543210" target="_blank" class="contact-card" data-delay="0.2s">
+        <a href="https://wa.me/917704866570" target="_blank" class="contact-card" data-delay="0.2s">
           <div class="contact-card-bg gradient-green"></div>
           <div class="contact-card-content">
             <div class="contact-icon">💬</div>
             <h3 class="contact-title">WhatsApp</h3>
-            <p class="contact-value emerald">+91 98765 43210</p>
+            <p class="contact-value emerald">+91 7704866570</p>
             <p class="contact-label">Instant chat</p>
           </div>
         </a>
@@ -335,9 +374,8 @@ function getContactPageHTML() {
               <div class="info-card-social">
                 <h3 class="info-title">Follow Me</h3>
                 <div class="social-links">
-                  <a href="#" class="social-link">Instagram</a>
-                  <a href="#" class="social-link">Facebook</a>
-                  <a href="#" class="social-link">YouTube</a>
+                  <a href="https://www.instagram.com/ABHAY_VIDEOGRAPHY_STUDIO" class="social-link" target="_blank">Instagram</a>
+                  
                 </div>
               </div>
             </div>
@@ -381,7 +419,7 @@ function initApp() {
             <div class="navbar-buttons">
               ${createNavButton('home-btn', '🏠', 'Home', 'home')}
               ${createNavButton('frontend-btn', '💍', 'Portfolio', 'frontend')}
-              ${createNavButton('backend-btn', '📞', 'Contact', 'backend')}
+              ${createNavButton('backend-btn', '📞', 'Contact US', 'backend')}
             </div>
           </div>
         </div>

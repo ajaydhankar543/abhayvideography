@@ -658,6 +658,169 @@ body {
 }
 
 /* ============================================
+   QUICK CONTACT SECTION
+   ============================================ */
+
+.quick-contact-section {
+  margin-bottom: 3rem;
+  animation: slide-in 0.6s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+@media (min-width: 640px) {
+  .quick-contact-section {
+    margin-bottom: 4rem;
+  }
+}
+
+.quick-contact-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #60a5fa, #34d399, #60a5fa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@media (min-width: 640px) {
+  .quick-contact-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.quick-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .quick-contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.quick-contact-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .quick-contact-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+}
+
+.quick-contact-card:hover {
+  transform: translateY(-0.5rem) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.quick-contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.quick-contact-card.gradient-green::before {
+  background: linear-gradient(to bottom right, rgba(5, 150, 105, 0.2), rgba(16, 185, 129, 0.2));
+}
+
+.quick-contact-card.gradient-blue::before {
+  background: linear-gradient(to bottom right, rgba(37, 99, 235, 0.2), rgba(6, 182, 212, 0.2));
+}
+
+.quick-contact-card.gradient-emerald::before {
+  background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.2));
+}
+
+.quick-contact-card:hover::before {
+  opacity: 1;
+}
+
+.quick-contact-icon {
+  position: relative;
+  z-index: 10;
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+@media (min-width: 640px) {
+  .quick-contact-icon {
+    font-size: 3rem;
+  }
+}
+
+.quick-contact-info {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.quick-contact-label {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .quick-contact-label {
+    font-size: 1rem;
+  }
+}
+
+.quick-contact-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  word-break: break-word;
+}
+
+@media (min-width: 640px) {
+  .quick-contact-value {
+    font-size: 1.125rem;
+  }
+}
+
+.quick-contact-card.gradient-green .quick-contact-value {
+  color: #34d399;
+}
+
+.quick-contact-card.gradient-blue .quick-contact-value {
+  color: #60a5fa;
+}
+
+.quick-contact-card.gradient-emerald .quick-contact-value {
+  color: #6ee7b7;
+}
+
+/* ============================================
    FEATURE CARDS
    ============================================ */
 
