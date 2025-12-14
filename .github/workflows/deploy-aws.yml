@@ -46,9 +46,81 @@ jobs:
             # Navigate to app directory
             cd ~/abhayvideography || mkdir -p ~/abhayvideography && cd ~/abhayvideography
             
-            # Create docker-compose.yml (always overwrite to ensure latest config)
-            echo "📝 Creating docker-compose.yml..."
-            cat > docker-compose.yml << 'EOF'
+            # Check if SSL is configured
+            if [ -d "/etc/letsencrypt/live" ] && [ -f "nginx-ssl.conf" ]; then
+              echo "🔒 SSL certificates detected - using SSL configuration"
+              SSL_ENABLED=true
+            else
+              echo "⚠️  No SSL certificates found - using HTTP only"
+              SSL_ENABLED=false
+            fi
+            
+            # Create appropriate docker-compose.yml based on SSL status
+            if [ "$SSL_ENABLED" = true ]; then
+              echo "📝 Creating docker-compose.yml with SSL support..."
+              cat > docker-compose.yml << 'EOF'
+            services:
+              backend:
+                image: abhaypratapsingh7704866570/abhayvideography-backend:latest
+                container_name: abhayvideography-backend
+                environment:
+                  - NODE_ENV=production
+                networks:
+                  - app-network
+                restart: unless-stopped
+                expose:
+                  - "3000"
+                healthcheck:
+                  test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+                  interval: 30s
+                  timeout: 10s
+                  retries: 3
+                  start_period: 40s
+            
+              frontend:
+                image: abhaypratapsingh7704866570/abhayvideography-frontend:latest
+                container_name: abhayvideography-frontend
+                networks:
+                  - app-network
+                restart: unless-stopped
+                expose:
+                  - "80"
+                healthcheck:
+                  test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80"]
+                  interval: 30s
+                  timeout: 10s
+                  retries: 3
+                  start_period: 40s
+            
+              nginx:
+                image: nginx:alpine
+                container_name: abhayvideography-nginx
+                ports:
+                  - "80:80"
+                  - "443:443"
+                volumes:
+                  - ./nginx-ssl.conf:/etc/nginx/nginx.conf:ro
+                  - /etc/letsencrypt:/etc/letsencrypt:ro
+                depends_on:
+                  - backend
+                  - frontend
+                networks:
+                  - app-network
+                restart: unless-stopped
+                healthcheck:
+                  test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80"]
+                  interval: 30s
+                  timeout: 10s
+                  retries: 3
+                  start_period: 40s
+            
+            networks:
+              app-network:
+                driver: bridge
+            EOF
+            else
+              echo "📝 Creating docker-compose.yml (HTTP only)..."
+              cat > docker-compose.yml << 'EOF'
             services:
               backend:
                 image: abhaypratapsingh7704866570/abhayvideography-backend:latest
@@ -106,6 +178,7 @@ jobs:
               app-network:
                 driver: bridge
             EOF
+            fi
             
             # Create nginx.conf if it doesn't exist
             if [ ! -f nginx.conf ]; then
