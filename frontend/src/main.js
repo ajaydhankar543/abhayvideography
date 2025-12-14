@@ -526,7 +526,7 @@ async function fetchBackendData() {
   error.classList.add('hidden')
   
   try {
-    const res = await fetch('http://localhost:3000/api/data')
+    const res = await fetch('/api/data')
     if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`)
     
     const data = await res.json()
