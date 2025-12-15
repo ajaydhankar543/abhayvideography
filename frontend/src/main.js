@@ -185,10 +185,10 @@ function getHomePageHTML() {
       </div>
 
       <div class="stats-grid">
-        ${createStatCard('200+', 'Weddings Shot', 'stat-gradient-rose')}
-        ${createStatCard('500+', 'Happy Clients', 'stat-gradient-amber')}
+        ${createStatCard('100+', 'Weddings Shot', 'stat-gradient-rose')}
+        ${createStatCard('300+', 'Happy Clients', 'stat-gradient-amber')}
         ${createStatCard('5 Years', 'Experience', 'stat-gradient-purple')}
-        ${createStatCard('4K', 'Cinema Quality', 'stat-gradient-green')}
+        ${createStatCard('4K , Log', 'Cinema Quality', 'stat-gradient-green')}
       </div>
     </div>
   `
