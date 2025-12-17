@@ -17,7 +17,7 @@ services:
       - app-network
     restart: unless-stopped
     expose:
-      - "80"
+      - "800"
 
   nginx:
     build:
